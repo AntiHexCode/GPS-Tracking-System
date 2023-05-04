@@ -8,7 +8,7 @@ unsigned long delay;
 void uart_init(){
   SYSCTL_SCGCUART_R |= 0x0001 ;
   SYSCTL_SCGCGPIO_R |= 0x001;
-  delay=3;
+  while(!(SYSCTL_PRGPIO_R &= 0x20));
   UART0_CTL_R &=~0x01;
   UART0_IBRD_R = 104; 
   UART0_FBRD_R = 11 ; 
