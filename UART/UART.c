@@ -1,4 +1,9 @@
+/*
+* Author: rye141200
+* Code for the UART 
+*/
 #include "UART.h"
+#include <stdint.h>
 unsigned long delay;
 void uart_init(){
   SYSCTL_SCGCUART_R |= 0x0001 ;
