@@ -1,4 +1,7 @@
-// UART
+/*
+* Author: OmarGabr0
+* UART header files
+*/
 #define UART0_DR_R              (*((volatile unsigned long *)0x4000C000))
 #define UART0_RSR_R             (*((volatile unsigned long *)0x4000C004))
 #define UART0_ECR_R             (*((volatile unsigned long *)0x4000C004))
