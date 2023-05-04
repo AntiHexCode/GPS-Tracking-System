@@ -1,29 +1,21 @@
-/*
- * Author: AntiHexCode
- * Macros and Prototypes for Port F
-*/
+// UART
+#define UART0_DR_R              (*((volatile unsigned long *)0x4000C000))
+#define UART0_RSR_R             (*((volatile unsigned long *)0x4000C004))
+#define UART0_ECR_R             (*((volatile unsigned long *)0x4000C004))
+#define UART0_FR_R              (*((volatile unsigned long *)0x4000C018))
+#define UART0_ILPR_R            (*((volatile unsigned long *)0x4000C020))
+#define UART0_IBRD_R            (*((volatile unsigned long *)0x4000C024))
+#define UART0_FBRD_R            (*((volatile unsigned long *)0x4000C028))
+#define UART0_LCRH_R            (*((volatile unsigned long *)0x4000C02C))
+#define UART0_CTL_R             (*((volatile unsigned long *)0x4000C030))
+// SYSCTL//
+#define SYSCTL_SCGCGPIO_R       (*((volatile unsigned long *)0x400FE708))
+#define SYSCTL_SCGCUART_R       (*((volatile unsigned long *)0x400FE718))
+//GPIO port A//
+#define GPIO_PORTA_AFSEL_R      (*((volatile unsigned long *)0x40004420))
+#define GPIO_PORTA_PCTL_R       (*((volatile unsigned long *)0x4000452C))
+#define GPIO_PORTA_AMSEL_R      (*((volatile unsigned long *)0x40004528))
+#define GPIO_PORTA_DEN_R        (*((volatile unsigned long *)0x4000451C))
 
-// Macros
-// GPIO Registers (Port F)
-#define GPIO_PORTF_DATA_R        (*((volatile char *)0x400253FC))
-#define GPIO_PORTF_DIR_R         (*((volatile char *)0x40025400))
-#define GPIO_PORTF_AFSEL_R       (*((volatile char *)0x40025420))
-#define GPIO_PORTF_PUR_R         (*((volatile char *)0x40025510))
-#define GPIO_PORTF_DEN_R         (*((volatile char *)0x4002551C))
-#define GPIO_PORTF_LOCK_R        (*((volatile uint32_t *)0x40025520))
-#define GPIO_PORTF_CR_R          (*((volatile char *)0x40025524))
-#define GPIO_PORTF_AMSEL_R       (*((volatile char *)0x40025528))
-#define GPIO_PORTF_PCTL_R        (*((volatile uint32_t *)0x4002552C))
-
-
-// Prototypes
-// PORTF Intializations
-void init_portf (void);
-void init_portf_leds (void);
-void init_portf_switches (void);
-
-// LEDs
-void red_on (void);
-void yellow_on (void);
-void green_on (void);
-void turn_leds_off (void);
+void uart_init();
+char uart_recieve();
