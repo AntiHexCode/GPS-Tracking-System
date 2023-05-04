@@ -13,3 +13,9 @@
 #define GPIO_PORTF_AMSEL_R       (*((volatile char *)0x40025528))
 #define GPIO_PORTF_PCTL_R        (*((volatile uint32_t *)0x4002552C))
 #define UNLOCK_KEY                         0x4C4F434B
+
+// SysTick Timer
+#define NVIC_ST_CTRL_R           (*((volatile uint32_t *)0xE000E010))
+#define NVIC_ST_RELOAD_R         (*((volatile uint32_t *)0xE000E014))
+#define NVIC_ST_CURRENT_R        (*((volatile uint32_t *)0xE000E018))
+#define CLOCK                               16000000
