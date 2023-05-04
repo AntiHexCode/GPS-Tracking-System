@@ -1,60 +1,21 @@
-/*
- * Author: AntiHexCode
- * Code for the Leds and switches in Port F
-*/
-
-#include "leds_&_switches_portf.h"
-#include "tm4c123gh6pm.h"
-#include <stdint.h>
-
-
-// Enable PORTF clock
-void init_portf (void)
-{
-  SYSCTL_RCGCGPIO_R |= 0x20;
-  while(!(SYSCTL_PRGPIO_R &= 0x20));
+#include "UART.h"
+unsigned long delay;
+void uart_init(){
+  SYSCTL_SCGCUART_R |= 0x0001 ;
+  SYSCTL_SCGCGPIO_R |= 0x001;
+  delay=3;
+  UART0_CTL_R &=~0x01;
+  UART0_IBRD_R = 104; 
+  UART0_FBRD_R = 11 ; 
+  UART0_LCRH_R= 0x0070 ; // party diabled , word lenght = 8_bit , FEN = 1 
+  UART0_CTL_R= 0x0301; //enble UART0 , TXE,RXE  
+  //// GPIO port A initializations //
+  GPIO_PORTA_AFSEL_R= 0x03; // enable alternative function in A0 and A1 
+  GPIO_PORTA_PCTL_R = (GPIO_PORTA_PCTL_R&0xffffff00)+0x00000011; // PA0 = U0RX , PA1 = U0TX 
+  GPIO_PORTA_AMSEL_R &= ~0x03; // diable digital function in PA0 and PA1 
+  GPIO_PORTA_DEN_R |=0X03 ; // enable digital in PA0 and PA1
 }
-
-// Initialize PORTF RGB LEDs (PF1-PF3)
-void init_portf_leds (void)
-{
-  GPIO_PORTF_AFSEL_R &= ~0x0E;
-  GPIO_PORTF_PCTL_R &= ~0xFFF0;
-  GPIO_PORTF_AMSEL_R &= ~0x0E;
-  GPIO_PORTF_DEN_R |= 0x0E;
-  GPIO_PORTF_DIR_R |= 0x0E;
-  GPIO_PORTF_DATA_R &= ~0x0E;
-}
-
-// Initialize PORTF switches (PF0 and PF4)
-void init_portf_switches (void)
-{
-  GPIO_PORTF_LOCK_R = UNLOCK_KEY;
-  GPIO_PORTF_CR_R = 0xFF;
-  GPIO_PORTF_AFSEL_R &= ~0x11;
-  GPIO_PORTF_PCTL_R &= ~0xF000F;
-  GPIO_PORTF_AMSEL_R &= ~0x11;
-  GPIO_PORTF_DEN_R |= 0x11;
-  GPIO_PORTF_DIR_R &= ~0x11;
-  GPIO_PORTF_PUR_R |= 0x11;
-}
-
-void red_on (void)
-{
-  GPIO_PORTF_DATA_R |= 0x02;
-}
-
-void yellow_on (void)
-{
-  GPIO_PORTF_DATA_R |= 0x0A;
-}
-
-void green_on (void)
-{
-  GPIO_PORTF_DATA_R |= 0x08;
-}
-
-void turn_leds_off (void)
-{
-  GPIO_PORTF_DATA_R &= ~0x0E;
+char uart_recieve(){
+  while(UART0_FR_R & 0x0010 != 0); // not equal zero then wait
+  return (char)(UART0_DR_R &0xFF);
 }
