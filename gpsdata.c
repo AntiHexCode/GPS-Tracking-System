@@ -1,13 +1,17 @@
-#include "leds_&_switches_portf.h"
-#include "systick_timer.c"
+/*
+ * Author: rye141200, OmarGabr0, AntiHexCode
+ * Code for converting the NMEA GPRMC from GPS to Coordinates
+*/
+
 #include "tm4c123gh6pm.h"
 #include <stdint.h>
-#include "UART.c"
 #include "UART.h"
+
+
 int main (void)
-{ 
-  int counter =0;
-  char GPRMC[79];
+{
+  int counter = 0;
+  char GPRMC [79];
   char gprmc_mini[5];
   //LAT
   int lat_flag = 0;
@@ -50,7 +54,7 @@ int main (void)
       gprmc_mini[0] = gpsdata;
     }
     if(counter == 1 && gpsdata == 'P')
-    { 
+    {
       counter++;
       gprmc_mini[1] = gpsdata;
     }
@@ -70,7 +74,7 @@ int main (void)
       gprmc_mini[4] = gpsdata;
     }
     if(counter == 5) // meaning we are in GPRMC LINE
-    { 
+    {
       if(gpsdata == 'V')
       break;//invalid data
 
