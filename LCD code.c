@@ -351,22 +351,29 @@
 #define NVIC_ST_RELOAD_M        0x00FFFFFF  // Reload Value
 #define NVIC_ST_RELOAD_S        0
 
-void LCD_command(int x){
+void LCD_command(char x){
+	GPIO_PORTA_DATA_R = 0;
 	
+	/**/
 };
 void LCD_Init(void){
-	SYSCTL_RCGCGPIO_R |= 0x03;
-	GPIO_PORTB_DIR_R |= 0xFF;
-	GPIO_PORTB_DEN_R |= 0xFF;
+	SYSCTL_RCGCGPIO_R |= 0x03; /* no. of pins necessary */
+	GPIO_PORTB_DIR_R |= 0xFF; /*Set all Port B pins as output*/
+	GPIO_PORTB_DEN_R |= 0xFF; /* Set all port B pins as digital*/
 	GPIO_PORTA_DEN_R |= 0xE0;
 	GPIO_PORTA_DIR_R |= 0xE0;
 	GPIO_PORTA_AFSEL_R |= 0x00;
+	GPIO_PORTA_AMSEL_R |= 0x00;
 	GPIO_PORTB_AMSEL_R |= 0x00;
-	LCD_command(6);
+	GPIO_PORTB_AFSEL_R |= 0x00;
+	LCD_command(0x30); //Startup LCD screen
+	LCD_command(0x38); //Tell the LCD that we are using 8 bit data
+	LCD_command(0x01); //Clear LCD screen
+	LCD_command(0x0F); //Display on,blink cursor
 };
 
 void LCD_Data(){
-	
+	GPIO_PORTA_DATA_R = 0x01;
 };
 
 void Systick_init(void){
@@ -392,12 +399,12 @@ int Lcd_enable;
 int command_data;
 int main(){
 	Systick_init();
-	LCD_Init();
+	LCD_Init(); /* This is to initialize Digital pins */
 	while(1){
-		LCD_command(1);
-		LCD_command(0x8F);
-		/*LCD Recieve */
-		//to clear the LCD screen
+		LCD_command(0x80); //To start at the first line of LCD
+		LCD_command(6); // To increment position of LCD
+		LCD_command(0xC0);//For second line of LCD 
+		
 	}
 	
  }
