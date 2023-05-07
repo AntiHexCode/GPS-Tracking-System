@@ -350,12 +350,25 @@
 //*****************************************************************************
 #define NVIC_ST_RELOAD_M        0x00FFFFFF  // Reload Value
 #define NVIC_ST_RELOAD_S        0
-
+void Systick_wait_1ms(){
+		NVIC_ST_RELOAD_R=16000-1 ;
+	  NVIC_ST_CURRENT_R=0;
+	while((NVIC_ST_CTRL_R&0x00010000)==0){};
+}
+void delay(int time){
+		int i;
+		for(i=0 ; i<time ; i++){
+				Systick_wait_1ms();
+		}
+}
 void LCD_command(char x){
 	GPIO_PORTA_DATA_R = 0;
-	
+	GPIO_PORTB_DATA_R = x;
+	GPIO_PORTA_DATA_R |= 0x80;
+	delay(1000);
 	/**/
 };
+
 void LCD_Init(void){
 	SYSCTL_RCGCGPIO_R |= 0x03; /* no. of pins necessary */
 	GPIO_PORTB_DIR_R |= 0xFF; /*Set all Port B pins as output*/
@@ -372,8 +385,12 @@ void LCD_Init(void){
 	LCD_command(0x0F); //Display on,blink cursor
 };
 
-void LCD_Data(){
-	GPIO_PORTA_DATA_R = 0x01;
+void LCD_data(char data){
+	GPIO_PORTA_DATA_R = 0x20;
+	GPIO_PORTB_DATA_R = data;
+	GPIO_PORTA_DATA_R |= 0x80;
+	delay(1000);
+	GPIO_PORTA_DATA_R &= 0x00;
 };
 
 void Systick_init(void){
@@ -382,26 +399,12 @@ void Systick_init(void){
 	  NVIC_ST_CURRENT_R=0;
 		NVIC_ST_CTRL_R=0x05;
 }
-void Systick_wait_1ms(){
-		NVIC_ST_RELOAD_R=16000-1 ;
-	  NVIC_ST_CURRENT_R=0;
-	while((NVIC_ST_CTRL_R&0x00010000)==0){};
-}
-void delay(int time){
-		int i;
-		for(i=0 ; i<time ; i++){
-				Systick_wait_1ms();
-		}
-}
-
-
-int Lcd_enable;
-int command_data;
 int main(){
 	Systick_init();
 	LCD_Init(); /* This is to initialize Digital pins */
 	while(1){
 		LCD_command(0x80); //To start at the first line of LCD
+		LCD_data('A'); //function to display the data we desire on screen 
 		LCD_command(6); // To increment position of LCD
 		LCD_command(0xC0);//For second line of LCD 
 		
