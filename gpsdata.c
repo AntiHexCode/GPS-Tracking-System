@@ -1,7 +1,3 @@
-/*
- * Author: rye141200, OmarGabr0, AntiHexCode
- * Code for converting the NMEA GPRMC from GPS to Coordinates
-*/
 
 #include "tm4c123gh6pm.h"
 #include <stdint.h>
