@@ -58,3 +58,13 @@ void turn_leds_off (void)
 {
   GPIO_PORTF_DATA_R &= ~0x0E;
 }
+
+int switch_1_pressed (void)
+{
+  return (!(GPIO_PORTF_DATA_R & 0x01));
+}
+
+int switch_2_pressed (void)
+{
+  return (!(GPIO_PORTF_DATA_R & 0x10));
+}

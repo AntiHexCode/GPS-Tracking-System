@@ -27,3 +27,7 @@ void red_on (void);
 void yellow_on (void);
 void green_on (void);
 void turn_leds_off (void);
+
+// Switches
+int switch_1_pressed (void);
+int switch_2_pressed (void);
