@@ -7,7 +7,6 @@
 #include "UART.h"
 
 // Libraries
-#include <stdint.h>
 #include <stdio.h>
 
 // Prototypes

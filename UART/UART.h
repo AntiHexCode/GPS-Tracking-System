@@ -3,6 +3,9 @@
 * UART0 Macros and Prototypes
 */
 
+// Header Files
+#include "tm4c123gh6pm.h"
+
 // Macros
 // UART0 //
 #define UART0_DR_R              (*((volatile unsigned long *)0x4000C000))

@@ -4,8 +4,6 @@
 */
 
 #include "leds_&_switches_portf.h"
-#include "tm4c123gh6pm.h"
-#include <stdint.h>
 
 
 // Enable PORTF clock
@@ -39,19 +37,19 @@ void init_portf_switches (void)
   GPIO_PORTF_PUR_R |= 0x11;
 }
 
-void red_on (void)
+void only_red_on (void)
 {
-  GPIO_PORTF_DATA_R |= 0x02;
+  GPIO_PORTF_DATA_R = (GPIO_PORTF_DATA_R & ~0x0C) | 0x02;
 }
 
-void yellow_on (void)
+void only_yellow_on (void)
 {
-  GPIO_PORTF_DATA_R |= 0x0A;
+  GPIO_PORTF_DATA_R = (GPIO_PORTF_DATA_R & ~0x04) | 0x0A;
 }
 
-void green_on (void)
+void only_green_on (void)
 {
-  GPIO_PORTF_DATA_R |= 0x08;
+  GPIO_PORTF_DATA_R = (GPIO_PORTF_DATA_R & ~0x03) | 0x08;
 }
 
 void turn_leds_off (void)

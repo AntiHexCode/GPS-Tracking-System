@@ -4,8 +4,6 @@
 */
 
 #include "systick_timer.h"
-#include "tm4c123gh6pm.h"
-#include <stdint.h>
 
 
 // Intialize SysTick timer to count 1 millisecond
@@ -18,9 +16,9 @@ void init_systick (void)
 }
 
 // Delay for specified time in milliseconds
-void delay (uint32_t time)
+void delay (double time)
 {
-  uint32_t i;
+  int i;
   for (i = 0; i < time; i++)
     while(!(NVIC_ST_CTRL_R & 0x10000));
 }

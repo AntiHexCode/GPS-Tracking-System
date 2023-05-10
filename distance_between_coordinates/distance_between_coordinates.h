@@ -5,7 +5,6 @@
 
 // Libraries
 #include <math.h>
-#include <stdint.h>
 
 // Macros
 #define EARTH_RADIUS    6371000 // in meters

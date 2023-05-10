@@ -3,58 +3,107 @@
 #include "systick_timer.h"
 #include "latitude_and_longitude.h"
 #include "distance_between_coordinates.h"
-#include <stdint.h>
 
 
 int main (void)
 {
+
+
+  ///////////////////////// TOTAL DISTANCE CALCULATIONS ////////////////////////
+  // Author: AntiHexCode
   // First location coordinates
   double latitude_1;
   double longitude_1;
-
   // Second location coordinates
   double latitude_2;
   double longitude_2;
-  double instancevelocity;
-  double n=0;   // Author:OmarGabr0.. n is used to count how many time the super loob had been excuted, this can be used to calculate the average velocity
-  double comulative_speed=0; // used for comulative speed calculations
-  // Distance that has been walked in meters
-  double walked_distance = 0;
-  //velocity in the current instance 
+  // Final Location coordinates
+  double final_latitude;
+  double final_longitude;
+  // Distance that has been walked in meters between the sub locations
+  double walked_distance;
+  // Distance that has been walked in meters between the first and final locations
+  double total_walked_distance = 0;
   // Getting the latitude and longitude for the first location
   latitude_and_longitude (&latitude_1, &longitude_1);
+  //////////////////////////////////////////////////////////////////////////////
 
-  // Wait for half a second (500 msec)
+
+
+
+  ///////////////////////// SPEED CALCULATIONS /////////////////////////////////
+  // Author: OmarGabr0
+  double instantaneous_speed;
+  // counter that counts how many times the super loob had been excuted
+  // this can be used to calculate the average speed
+  int counter = 0;
+  // used for comulative speed calculations
+  double comulative_speed = 0;
+  //////////////////////////////////////////////////////////////////////////////
+
+
+
+  // Wait for half a second (500 milisecond)
   delay(500);
+
 
   // Welcome to the main loop
   while (1){
-   n+=1; // used for " average" functions calculations
+
+
+    ///////////////////////// TOTAL DISTANCE CALCULATIONS //////////////////////
+    // Author: AntiHexCode
     // Getting the latitude and longitude for the first location
     latitude_and_longitude (&latitude_2, &longitude_2);
-
     // Adding the distance we just walked moving between the two coordinates
-    walked_distance += distance_between_coordinates(latitude_1, longitude_1, latitude_2, longitude_2);
-    // Author:OmarGabr0..  Adding the instance velocity and average velocity 
-     instancevelocity= instance_velocity ( latitude_1,longitude_1,latitude_2,longitude_2);
-     comulative_speed+= instancevelocity;
-   
-  
-   
+    walked_distance = distance_between_coordinates(latitude_1, longitude_1, latitude_2, longitude_2);
+    total_walked_distance += walked_distance;
+    ////////////////////////////////////////////////////////////////////////////
+
+
+
+    ////////////////////////////////// LEDs ////////////////////////////////////
+    // Author: KarimWalidFawzy
+    // displacement between the current location and the final location
+    double displacement = distance_between_coordinates(latitude_2, longitude_2, final_latitude, final_longitude);
+    init_portf ();
+    init_portf_leds ();
+    // Arrived (approx 0.5 meter or less near final location)
+    if(displacement <= 0.5)
+    {
+      only_green_on();
+    }
+    // five meters or less near the final location but didn't arrive yet
+    else if((displacement <= 5) && (distance > 0.5))
+    {
+      only_yellow_on();
+    }
+    // far away
+    else
+    {
+      only_red_on();
+    }
+    ////////////////////////////////////////////////////////////////////////////
+
+
+
+    ///////////////////////// SPEED CALCULATIONS ///////////////////////////////
+    // Author: OmarGabr0
+    counter += 1; // used for " average" functions calculations
+    // Adding the instantaneous speed and average speed
+    instantaneous_speed = instantaneous_speed(walked_distance);
+    comulative_speed += instantaneous_speed;
+    ////////////////////////////////////////////////////////////////////////////
+
+
+
+    ////////////////////// TOTAL DISTANCE CALCULATIONS /////////////////////////
+    // Author: AntiHexCode
     /* setting the final point of the "first walked distance" as the first point
        for the "second distance" that will be walked */
     latitude_1 = latitude_2;
     longitude_1 = longitude_2;
-
-    /*the code above may be rearranged after adding the other codes for the project
-      in the main function but the main logic will probably stay the same.
-      -The Leds code MUST be added.
-      -The LCD code MUST be added.
-      -The GPS interfacing code MUST be written and that might need a small
-      modification on the coordinates extracting function.
-      ~~ With pleasure, AntiHexCode :)
-    */
-
+    ////////////////////////////////////////////////////////////////////////////
 
 
   }

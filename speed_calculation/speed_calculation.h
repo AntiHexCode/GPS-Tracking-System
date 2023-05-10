@@ -1,8 +1,11 @@
+/*
+* Author: OmarGabr0
+* Header files and Prototypes for calculating inistance velocity every 0.5 secon
+*/
+
 
 #include "distance_between_coordinates.h"
- 
 
 
-
-double instance_velocity ( double lat_1,double lon_1,double lat_2,double lon_2);
-double average_velocity(double n,double comulative_speed);
+double instantaneous_speed (double walked_distance);
+double average_speed (double counter, double comulative_speed);
