@@ -26,5 +26,5 @@ void init_pf4_switch_interrupt(void)
 void GPIOPortF_Handler(void)
 {
   GPIO_PORTF_ICR_R = 0x10; // Acknowledge
-  // The code to be excuted when an interrupt happens
+  switch_interrupt_counter += 0;
 }

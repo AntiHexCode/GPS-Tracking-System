@@ -207,7 +207,7 @@ char uart_recieve();
 
 //////////////////////////////////// LCD ///////////////////////////////////////
 /*
- * Author: AntiHexCode
+ * Author: AntiHexCode, Mohamed Mostafa Mahmoud
  * Macros and Prototypes for LCD
 */
 
@@ -234,4 +234,12 @@ char uart_recieve();
 #define GPIO_PORTB_DIR_R        (*((volatile unsigned long *)0x40005400))
 #define GPIO_PORTB_PUR_R        (*((volatile unsigned long *)0x40005510))
 #define GPIO_PORTB_PDR_R        (*((volatile unsigned long *)0x40005514))
+
+// Prototypes
+void lcd_cmd(unsigned char data);
+void BINS_DATA(unsigned char data);
+void PORTS_INIT(void);
+void lcd_init(void);
+void lcd_data(unsigned char data);
+void lcd_string(unsigned char *str, unsigned char length);
 ////////////////////////////////////////////////////////////////////////////////

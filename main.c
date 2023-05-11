@@ -1,12 +1,14 @@
 #include "tm4c123gh6pm.h"
 
+int switch_interrupt_counter = 0;
 
 int main (void)
 {
 
+  init_pf4_switch_interrupt();
   lcd_init();
 
-  
+
   ///////////////////////// TOTAL DISTANCE CALCULATIONS ////////////////////////
   // Author: AntiHexCode
   // First location coordinates
@@ -72,7 +74,7 @@ int main (void)
       only_green_on();
     }
     // five meters or less near the final location but didn't arrive yet
-    else if((displacement <= 5) && (distance > 0.5))
+    else if((displacement <= 5) && (displacement > 0.5))
     {
       only_yellow_on();
     }
@@ -85,9 +87,9 @@ int main (void)
 
 
 
-    ///////////////////////// SPEED CALCULATIONS ///////////////////////////////
+    /////////////////////////// SPEED CALCULATIONS /////////////////////////////
     // Author: OmarGabr0
-    counter += 1; // used for " average" functions calculations
+    counter += 1; // used for average speed calculations
     // Adding the instantaneous speed and average speed
     instantaneous_speed = instantaneous_speed(walked_distance);
     comulative_speed += instantaneous_speed;
@@ -104,20 +106,21 @@ int main (void)
     ////////////////////////////////////////////////////////////////////////////
 
 
-     ////////////////////// LCD DISPLAY /////////////////////////
+
+    ////////////////////////////// LCD Display /////////////////////////////////
     // Author: KarimWalidFawzy
-    /** displaying the distance and speed on the lcd screen*/
+    // displaying the distance and speed on the lcd screen
     char* str1="Distance";
     char* str2="Speed";
-    lcd_string(str1,9);
+    lcd_string(str1, 9);
     lcd_cmd(0x06);
     lcd_data(walked_distance);
     lcd_cmd(0xC0);
-    lcd_string(str2,6);
+    lcd_string(str2, 6);
     lcd_cmd(0x06);
     lcd_data(instantaneous_speed);
     lcd_cmd(0x80);
-      ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
   }
 
