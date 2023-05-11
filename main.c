@@ -9,6 +9,7 @@ int main (void)
 {
 
 
+  lcd_init();
   ///////////////////////// TOTAL DISTANCE CALCULATIONS ////////////////////////
   // Author: AntiHexCode
   // First location coordinates
