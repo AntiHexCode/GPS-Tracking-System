@@ -5,8 +5,8 @@
 
 /*
 some info about lcd 16*2:
-* we will work in 8 bit mode using 7 bits of port B
-* we will make control BITS in A7 , A6 , A5
+* we will work in 8 bit mode using 8 bits of port B
+* we will make control BITS in A7, A6, A5
 * PIN 1 --> ground
 * PIN 2 --> VCC
 * PIN 4 (R/S): toogle between command and data , 0--->command mode  , 1 -----> DATA mode
@@ -29,77 +29,44 @@ some info about lcd 16*2:
 void BINS_DATA (unsigned char data)  // 8 bit data
 {
 	if ((data & 0x01)==0x01) // B0 has 1 on it
-	{
 		GPIO_PORTB_DATA_R |= 0x01;
-	}
 	else
-	{
 		GPIO_PORTB_DATA_R &= ~(0x01);
-	}
 
 	if ((data & 0x02)==0x02) // B1 has 1 on it
-	{
 		GPIO_PORTB_DATA_R |= 0x02;
-	}
 	else
-	{
 		GPIO_PORTB_DATA_R &= ~(0x02);
-	}
 
 	if ((data & 0x04)==0x04) // B2 has 1 on it
-	{
 		GPIO_PORTB_DATA_R |= 0x04;
-	}
 	else
-	{
 		GPIO_PORTB_DATA_R &= ~(0x04);
-	}
 
 	if ((data & 0x08)==0x08) // B3 has 1 on it
-	{
 		GPIO_PORTB_DATA_R |= 0x08;
-	}
 	else
-	{
 		GPIO_PORTB_DATA_R &= ~(0x08);
-	}
 
 	if ((data & 0x10)==0x10) // B4 has 1 on it
-	{
 		GPIO_PORTB_DATA_R |= 0x10;
-	}
 	else
-	{
 		GPIO_PORTB_DATA_R &= ~(0x10);
-	}
 
 	if ((data & 0x20)==0x20) // B5 has 1 on it
-	{
 		GPIO_PORTB_DATA_R |= 0x20;
-	}
 	else
-	{
 		GPIO_PORTB_DATA_R &= ~(0x20);
-	}
 
 	if ((data & 0x40)==0x40) // B6 has 1 on it
-	{
 		GPIO_PORTB_DATA_R |= 0x40;
-	}
 	else
-	{
 		GPIO_PORTB_DATA_R &= ~(0x40);
-	}
 
 	if ((data & 0x80)==0x80) // B7 has 1 on it
-	{
 		GPIO_PORTB_DATA_R |= 0x80;
-	}
 	else
-	{
 		GPIO_PORTB_DATA_R &= ~(0x80);
-	}
-
 
 }
 

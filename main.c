@@ -1,6 +1,5 @@
 #include "tm4c123gh6pm.h"
 
-int switch_interrupt_counter = 0;
 
 int main (void)
 {
