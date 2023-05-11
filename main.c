@@ -105,6 +105,21 @@ int main (void)
     longitude_1 = longitude_2;
     ////////////////////////////////////////////////////////////////////////////
 
+    
+     ////////////////////// LCD DISPLAY /////////////////////////
+    // Author: KarimWalidFawzy 
+    /** displaying the distance and speed on the lcd screen*/
+    char* str1="Distance";
+    char* str2="Speed";
+    lcd_string(str1,9);
+    lcd_cmd(0x06);
+    lcd_data(walked_distance);
+    lcd_cmd(0xC0);
+    lcd_string(str2,6);
+    lcd_cmd(0x06);
+    lcd_data(instantaneous_speed);
+    lcd_cmd(0x80);
+      ////////////////////////////////////////////////////////////////////////////
 
   }
 
