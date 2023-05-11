@@ -3,7 +3,7 @@
 * Code for converting the NMEA GPRMC from GPS to Coordinates
 */
 
-# include "latitude_and_longitude.h"
+#include "tm4c123gh6pm.h"
 
 
 // Extracting latitude and longitude from NMEA GPRMC

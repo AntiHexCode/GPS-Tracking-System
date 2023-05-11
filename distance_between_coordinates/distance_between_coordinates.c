@@ -4,7 +4,7 @@
 */
 
 
-#include "distance_between_coordinates.h"
+#include "tm4c123gh6pm.h"
 
 // Calculating the distance between two coordinates using their latitude and longitude
 double distance_between_coordinates(double lat_1, double lon_1, double lat_2, double lon_2)

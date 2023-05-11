@@ -1,15 +1,12 @@
 #include "tm4c123gh6pm.h"
-#include "leds_&_switches_portf.h"
-#include "systick_timer.h"
-#include "latitude_and_longitude.h"
-#include "distance_between_coordinates.h"
 
 
 int main (void)
 {
 
-
   lcd_init();
+
+  
   ///////////////////////// TOTAL DISTANCE CALCULATIONS ////////////////////////
   // Author: AntiHexCode
   // First location coordinates
@@ -106,9 +103,9 @@ int main (void)
     longitude_1 = longitude_2;
     ////////////////////////////////////////////////////////////////////////////
 
-    
+
      ////////////////////// LCD DISPLAY /////////////////////////
-    // Author: KarimWalidFawzy 
+    // Author: KarimWalidFawzy
     /** displaying the distance and speed on the lcd screen*/
     char* str1="Distance";
     char* str2="Speed";

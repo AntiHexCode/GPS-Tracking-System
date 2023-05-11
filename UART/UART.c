@@ -3,8 +3,7 @@
 * Code for the UART0 intialization and receving data
 */
 
-
-#include "UART.h"
+#include "tm4c123gh6pm.h"
 
 // UART0 Intialization
 void uart0_init(){

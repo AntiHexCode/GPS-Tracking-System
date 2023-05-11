@@ -3,7 +3,7 @@
  * Code for SysTick timer
 */
 
-#include "systick_timer.h"
+#include "tm4c123gh6pm.h"
 
 
 // Intialize SysTick timer to count 1 millisecond

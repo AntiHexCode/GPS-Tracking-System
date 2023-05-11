@@ -3,7 +3,7 @@
  * Code for the Leds and switches in Port F
 */
 
-#include "leds_&_switches_portf.h"
+#include "tm4c123gh6pm.h"
 
 
 // Enable PORTF clock

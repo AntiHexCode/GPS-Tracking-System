@@ -3,7 +3,7 @@
  * Code for PF4 Switch Interrupt
 */
 
-#include "pf4_switch_interrupt.h"
+#include "tm4c123gh6pm.h"
 
 void init_pf4_switch_interrupt(void)
 {
