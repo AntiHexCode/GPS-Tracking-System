@@ -9,9 +9,9 @@ int main (void)
    char* str1="Distance(m)";
     char* str2="Speed(m/s)";
   lcd_cmd(0x80);
-    lcd_string(str1,9);
+    lcd_string(str1,12);
   lcd_cmd(0xC0);
-    lcd_string(str2,6);
+    lcd_string(str2,11);
 
 
   ///////////////////////// TOTAL DISTANCE CALCULATIONS ////////////////////////
