@@ -6,6 +6,12 @@ int main (void)
 
   init_pf4_switch_interrupt();
   lcd_init();
+   char* str1="Distance(m)";
+    char* str2="Speed(m/s)";
+  lcd_cmd(0x80);
+    lcd_string(str1,9);
+  lcd_cmd(0xC0);
+    lcd_string(str2,6);
 
 
   ///////////////////////// TOTAL DISTANCE CALCULATIONS ////////////////////////
@@ -103,23 +109,18 @@ int main (void)
     latitude_1 = latitude_2;
     longitude_1 = longitude_2;
     ////////////////////////////////////////////////////////////////////////////
-
-
-
-    ////////////////////////////// LCD Display /////////////////////////////////
-    // Author: KarimWalidFawzy
-    // displaying the distance and speed on the lcd screen
-    char* str1="Distance";
-    char* str2="Speed";
-    lcd_string(str1, 9);
-    lcd_cmd(0x06);
+    
+    ////////////////////// LCD DISPLAY /////////////////////////
+    // Author: KarimWalidFawzy 
+    /** displaying the distance and speed on the lcd screen*/
+    lcd_cmd(0x8D);
     lcd_data(walked_distance);
-    lcd_cmd(0xC0);
-    lcd_string(str2, 6);
-    lcd_cmd(0x06);
+    lcd_cmd(0xCB);
     lcd_data(instantaneous_speed);
     lcd_cmd(0x80);
-    ////////////////////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////
+
+
 
   }
 
