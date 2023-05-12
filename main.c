@@ -117,7 +117,7 @@ int main (void)
     lcd_data(walked_distance);
     lcd_cmd(0xCB);
     lcd_data(instantaneous_speed);
-    lcd_cmd(0x80);
+    lcd_cmd(0x8D);
       ////////////////////////////////////////////////////////////////////////////
 
 
