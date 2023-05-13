@@ -16,3 +16,10 @@
   2. Connect the jumpers to the microcontrollers and the modules.
   3. Power the microcontroller with a battery or power bank.
   4. Upload the code using an IDE like Keil uvision or Energia.
+- ## Links: ##
+  - <a href="https://docs.novatel.com/OEM7/Content/Logs/GPRMC.htm" target="_blank">(NEO-6M datasheet)</a>
+  - <a href="https://circuitdigest.com/article/16x2-lcd-display-module-pinout-datasheet">(LCD datasheet)</a>
+ - ## Credits: ##
+ | Name | ID | GitHub username |
+ |:-----|:--:|----------------:|
+ | Ahmad Mahfouz | 2002238 | rye141200|
