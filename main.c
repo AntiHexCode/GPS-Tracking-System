@@ -4,7 +4,7 @@
 int main (void)
 {
 
- 
+
 
 
   ///////////////////////// TOTAL DISTANCE CALCULATIONS ////////////////////////
@@ -15,9 +15,9 @@ int main (void)
   // Second location coordinates
   double latitude_2;
   double longitude_2;
-  // Final Location coordinates
-  double final_latitude;
-  double final_longitude;
+  // Final Location coordinates, some random numbers
+  double final_latitude = 77.687;
+  double final_longitude = 42.717;
   // Distance that has been walked in meters between the sub locations
   double walked_distance;
   // Distance that has been walked in meters between the first and final locations
@@ -102,11 +102,11 @@ int main (void)
     latitude_1 = latitude_2;
     longitude_1 = longitude_2;
     ////////////////////////////////////////////////////////////////////////////
-    
+
     ////////////////////// LCD DISPLAY /////////////////////////
-    // Author: KarimWalidFawzy 
+    // Author: KarimWalidFawzy
     /** displaying the distance and speed on the lcd screen*/
-   
+
       ////////////////////////////////////////////////////////////////////////////
 
 
