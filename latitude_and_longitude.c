@@ -6,7 +6,7 @@
 #include "tm4c123gh6pm.h"
 
 
-// Extracting latitude and longitude from NMEA GPRMC
+/*Extracting latitude and longitude from NMEA GPRMC*/
 void latitude_and_longitude (double *latitude, double *longitude)
 {
   char GPRMC[78];
@@ -26,7 +26,7 @@ void latitude_and_longitude (double *latitude, double *longitude)
       GPRMC[i] = uart_recieve();
 
     // Checking if its GPRMC or not, and if it's valid or not
-    if (!((GPRMC[2] == "R") && (GPRMC[16] == "A")))
+    if (!((GPRMC[2] == 'R') && (GPRMC[16] == 'A')))
       continue;
 
     // Extracting the latitude and longitude

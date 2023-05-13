@@ -257,3 +257,27 @@ void lcd_init(void);
 void lcd_data(unsigned char data);
 void lcd_string(unsigned char *str, unsigned char length);
 ////////////////////////////////////////////////////////////////////////////////
+//*****************************************************************************
+//
+// UART registers (UART2)
+// author: rye141200
+//*****************************************************************************
+#define UART2_DR_R              (*((volatile unsigned long *)0x4000E000))
+#define UART2_RSR_R             (*((volatile unsigned long *)0x4000E004))
+#define UART2_ECR_R             (*((volatile unsigned long *)0x4000E004))
+#define UART2_FR_R              (*((volatile unsigned long *)0x4000E018))
+#define UART2_ILPR_R            (*((volatile unsigned long *)0x4000E020))
+#define UART2_IBRD_R            (*((volatile unsigned long *)0x4000E024))
+#define UART2_FBRD_R            (*((volatile unsigned long *)0x4000E028))
+#define UART2_LCRH_R            (*((volatile unsigned long *)0x4000E02C))
+#define UART2_CTL_R             (*((volatile unsigned long *)0x4000E030))
+#define UART2_IFLS_R            (*((volatile unsigned long *)0x4000E034))
+#define UART2_IM_R              (*((volatile unsigned long *)0x4000E038))
+#define UART2_RIS_R             (*((volatile unsigned long *)0x4000E03C))
+#define UART2_MIS_R             (*((volatile unsigned long *)0x4000E040))
+#define UART2_ICR_R             (*((volatile unsigned long *)0x4000E044))
+#define UART2_DMACTL_R          (*((volatile unsigned long *)0x4000E048))
+#define UART2_9BITADDR_R        (*((volatile unsigned long *)0x4000E0A4))
+#define UART2_9BITAMASK_R       (*((volatile unsigned long *)0x4000E0A8))
+#define UART2_PP_R              (*((volatile unsigned long *)0x4000EFC0))
+#define UART2_CC_R              (*((volatile unsigned long *)0x4000EFC8))
