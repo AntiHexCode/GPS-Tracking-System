@@ -117,7 +117,7 @@ BINS_DATA(data);
 GPIO_PORTA_DATA_R |=(1<<5); // R/W OFF
 GPIO_PORTA_DATA_R |=(1<<7); // RS ON
 GPIO_PORTA_DATA_R |=(1<<6); // EN ON
-// DELAY (1000)  we used in systick
+delay(1000);
 GPIO_PORTA_DATA_R &= ~(1<<6); // EN OFF
 }
 

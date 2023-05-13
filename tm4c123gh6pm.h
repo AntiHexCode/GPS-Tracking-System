@@ -190,15 +190,6 @@ void uart_init();
 char uart_recieve();
 ////////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////   UART2  ///////////////////////////////
-#define UART2_DR_R              (*((volatile unsigned long *)0x4000E000))
-#define UART2_FR_R              (*((volatile unsigned long *)0x4000E018))
-#define UART2_IBRD_R            (*((volatile unsigned long *)0x4000E024))
-#define UART2_FBRD_R            (*((volatile unsigned long *)0x4000E028))
-#define UART2_LCRH_R            (*((volatile unsigned long *)0x4000E02C))
-#define UART2_CTL_R             (*((volatile unsigned long *)0x4000E030))
-//void uart2_init();
-//char uart2_recieve();
 
 
 ///////////////////////////////// Bit Help /////////////////////////////////////
