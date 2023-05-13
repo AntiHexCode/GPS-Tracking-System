@@ -74,14 +74,12 @@ void PORTS_INIT(void)
 {
 	SYSCTL_RCGCGPIO_R |= 0x03;
   while(!(SYSCTL_PRGPIO_R &= 0x03));
-	//GPIO_PORTB_LOCK_R = UNLOCK_KEY;
   GPIO_PORTB_CR_R = 0xFF;
   GPIO_PORTB_AFSEL_R &= ~0x11;
   GPIO_PORTB_PCTL_R &= ~0xFFFFFFF;
   GPIO_PORTB_AMSEL_R &= ~0xFF;
   GPIO_PORTB_DEN_R |= 0xFF;
   GPIO_PORTB_DIR_R |= 0xFF;
-  //GPIO_PORTB_PUR_R |= 0x11;
 
 	GPIO_PORTA_AMSEL_R |= 0x0;
 	GPIO_PORTA_DEN_R |= 0xE0; // RS, EN, RW BITS AS Output: A7, A6, A5 respectivly
@@ -107,7 +105,7 @@ BINS_DATA(data);
 GPIO_PORTA_DATA_R |=(1<<5); // R/W OFF
 GPIO_PORTA_DATA_R |=(1<<7); // RS ON
 GPIO_PORTA_DATA_R |=(1<<6); // EN ON
-// DELAY (1000)  we used in systick
+delay(1000);
 GPIO_PORTA_DATA_R &= ~(1<<6); // EN OFF
 }
 
@@ -118,8 +116,7 @@ void lcd_cmd(unsigned char command)  // stored as byte instruction in lcd regist
 BINS_DATA(command);
 GPIO_PORTA_DATA_R |= (1<<5); // R/W OFF
 GPIO_PORTA_DATA_R &= ~(1<<7); // RS OFF
-GPIO_PORTA_DATA_R |= (1<<6); // EN ON
-// DELAY (1000)  we used in systick
+delay(1000);
 GPIO_PORTA_DATA_R &= ~(1<<6); // EN OFF
 }
 

@@ -5,6 +5,18 @@ int main (void)
 {
 
 
+  //////////////////////////////// LCD DISPLAY ///////////////////////////////
+  // Author: KarimWalidFawzy
+  lcd_init();
+  char* str1 = "Distance(m)";
+  char* str2 = "Speed(m/s)";
+  lcd_cmd(0x80);
+  lcd_string(str1, 12);
+  lcd_cmd(0xC0);
+  lcd_string(str2, 11);
+  ////////////////////////////////////////////////////////////////////////////
+
+
 
 
   ///////////////////////// TOTAL DISTANCE CALCULATIONS ////////////////////////
@@ -70,17 +82,14 @@ int main (void)
     if(displacement <= 0.5)
     {
       only_green_on();
+      break;
     }
     // five meters or less near the final location but didn't arrive yet
     else if((displacement <= 5) && (displacement > 0.5))
-    {
       only_yellow_on();
-    }
     // far away
     else
-    {
       only_red_on();
-    }
     ////////////////////////////////////////////////////////////////////////////
 
 
@@ -103,14 +112,28 @@ int main (void)
     longitude_1 = longitude_2;
     ////////////////////////////////////////////////////////////////////////////
 
-    ////////////////////// LCD DISPLAY /////////////////////////
+
+
+    //////////////////////////////// LCD DISPLAY ///////////////////////////////
     // Author: KarimWalidFawzy
-    /** displaying the distance and speed on the lcd screen*/
+    // displaying the distance and instantenous speed on the lcd screen
+    lcd_cmd(0x8D);
+    lcd_data(walked_distance);
+    lcd_cmd(0xCB);
+    lcd_data(instantaneous_speed);
+    lcd_cmd(0x8D);
+    ////////////////////////////////////////////////////////////////////////////
 
-      ////////////////////////////////////////////////////////////////////////////
+  }
 
+  double average_speed = (instantaneous_speed / counter);
 
-
+  while(1){
+    lcd_cmd(0x8D);
+    lcd_data(total_walked_distance);
+    lcd_cmd(0xCB);
+    lcd_data(average_speed);
+    lcd_cmd(0x8D);
   }
 
 }
