@@ -109,6 +109,19 @@ delay(1000);
 GPIO_PORTA_DATA_R &= ~(1<<6); // EN OFF
 }
 
+void lcd_numberdata (double data) // this data stored in char register in lcd
+{
+// enable clock of lcd
+// enable write mode operation
+BINS_DATA(data);
+GPIO_PORTA_DATA_R |=(1<<5); // R/W OFF
+GPIO_PORTA_DATA_R |=(1<<7); // RS ON
+GPIO_PORTA_DATA_R |=(1<<6); // EN ON
+// DELAY (1000)  we used in systick
+GPIO_PORTA_DATA_R &= ~(1<<6); // EN OFF
+}
+
+
 void lcd_cmd(unsigned char command)  // stored as byte instruction in lcd register
 {
 // enable clock of lcd
