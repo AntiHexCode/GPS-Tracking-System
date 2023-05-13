@@ -118,9 +118,9 @@ int main (void)
     // Author: KarimWalidFawzy
     // displaying the distance and instantenous speed on the lcd screen
     lcd_cmd(0x8D);
-    lcd_data(walked_distance);
+    lcd_numberdata(walked_distance);
     lcd_cmd(0xCB);
-    lcd_data(instantaneous_speed);
+    lcd_numberdata(instantaneous_speed);
     lcd_cmd(0x8D);
     ////////////////////////////////////////////////////////////////////////////
 
