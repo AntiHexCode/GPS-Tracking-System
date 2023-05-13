@@ -4,14 +4,7 @@
 int main (void)
 {
 
-  init_pf4_switch_interrupt();
-  lcd_init();
-   char* str1="Distance(m)";
-    char* str2="Speed(m/s)";
-  lcd_cmd(0x80);
-    lcd_string(str1,12);
-  lcd_cmd(0xC0);
-    lcd_string(str2,11);
+ 
 
 
   ///////////////////////// TOTAL DISTANCE CALCULATIONS ////////////////////////
@@ -96,7 +89,7 @@ int main (void)
     // Author: OmarGabr0
     counter += 1; // used for average speed calculations
     // Adding the instantaneous speed and average speed
-    instantaneous_speed = instantaneous_speed(walked_distance);
+    instantaneous_speed = get_instantaneous_speed(walked_distance);
     comulative_speed += instantaneous_speed;
     ////////////////////////////////////////////////////////////////////////////
 
@@ -113,11 +106,7 @@ int main (void)
     ////////////////////// LCD DISPLAY /////////////////////////
     // Author: KarimWalidFawzy 
     /** displaying the distance and speed on the lcd screen*/
-    lcd_cmd(0x8D);
-    lcd_data(walked_distance);
-    lcd_cmd(0xCB);
-    lcd_data(instantaneous_speed);
-    lcd_cmd(0x8D);
+   
       ////////////////////////////////////////////////////////////////////////////
 
 

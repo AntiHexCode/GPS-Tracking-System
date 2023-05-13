@@ -12,7 +12,7 @@
 
  // distance samples evry 0.5 second
 
-double instantaneous_speed (double walked_distance)
+double get_instantaneous_speed (double walked_distance)
 {
   // calculating instantaneous_speed every 0.5 second *OR THE DELAY USED IN (main)*
   return (walked_distance / 0.5);
