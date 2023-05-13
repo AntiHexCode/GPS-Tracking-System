@@ -84,7 +84,21 @@ void turn_leds_off (void);
 int switch_1_pressed (void);
 int switch_2_pressed (void);
 ////////////////////////////////////////////////////////////////////////////////
-
+/*
+ * Author: OmarGabr0
+ * Macros for Port D ****"used in UART 2"***
+*/
+// Macros for portD
+#define GPIO_PORTD_DATA_R       (*((volatile unsigned long *)0x400073FC))
+#define GPIO_PORTD_AFSEL_R      (*((volatile unsigned long *)0x40007420))
+#define GPIO_PORTD_CR_R         (*((volatile unsigned long *)0x40007524))
+#define GPIO_PORTD_AMSEL_R      (*((volatile unsigned long *)0x40007528))
+#define GPIO_PORTD_DEN_R        (*((volatile unsigned long *)0x4000751C))
+#define GPIO_PORTD_LOCK_R       (*((volatile unsigned long *)0x40007520))
+#define GPIO_PORTD_PCTL_R       (*((volatile unsigned long *)0x4000752C))
+#define GPIO_PORTD_DIR_R        (*((volatile unsigned long *)0x40007400))
+#define GPIO_PORTD_PUR_R        (*((volatile unsigned long *)0x40007510))
+#define GPIO_PORTD_PDR_R        (*((volatile unsigned long *)0x40007514))
 
 
 /////////////////////////// PF4 Switch Interrupt ///////////////////////////////
@@ -176,6 +190,15 @@ void uart_init();
 char uart_recieve();
 ////////////////////////////////////////////////////////////////////////////////
 
+//////////////////////////////////////   UART2  ///////////////////////////////
+#define UART2_DR_R              (*((volatile unsigned long *)0x4000E000))
+#define UART2_FR_R              (*((volatile unsigned long *)0x4000E018))
+#define UART2_IBRD_R            (*((volatile unsigned long *)0x4000E024))
+#define UART2_FBRD_R            (*((volatile unsigned long *)0x4000E028))
+#define UART2_LCRH_R            (*((volatile unsigned long *)0x4000E02C))
+#define UART2_CTL_R             (*((volatile unsigned long *)0x4000E030))
+void uart2_init();
+char uart2_recieve();
 
 
 ///////////////////////////////// Bit Help /////////////////////////////////////
