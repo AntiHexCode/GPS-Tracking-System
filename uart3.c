@@ -3,12 +3,12 @@
 * Code for the UART2 intialization and receving data in case port A is not working
 */
 //////////////////////////////////////////////////
-///// PD7 = UART2 TX /////// P6 = UART2  RX//////
+///// PD7 = UART2 TX /////// PD6 = UART2  RX//////
 ////////////////////////////////////////////////
 
 //  UART PORT D INIT
 #include "tm4c123gh6pm.h"
-void UART2_Init(void){ 
+void uart_init(void){ 
     SYSCTL_RCGCUART_R |=0x04; 
     SYSCTL_RCGCGPIO_R |=0x08; 
 while(!(SYSCTL_PRGPIO_R &= 0X08)); // wait till port D stable
@@ -29,7 +29,7 @@ while(!(SYSCTL_PRGPIO_R &= 0X08)); // wait till port D stable
 }
 
 // UART2 recieve from Rx fifo
-char uart2_recieve(){
+char uart_recieve(){
     while (UART2_FR_R & 0X008 !=0); // while fifo embty 
     return(char)(UART2_DR_R & 0xFF);
 }

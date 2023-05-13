@@ -134,7 +134,7 @@ void GPIOPortF_Handler(void);
 * Prototypes for calculating inistance velocity every 0.5 secon
 */
 
-double instantaneous_speed (double walked_distance);
+double get_instantaneous_speed (double walked_distance);
 double average_speed (double counter, double comulative_speed);
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -197,8 +197,8 @@ char uart_recieve();
 #define UART2_FBRD_R            (*((volatile unsigned long *)0x4000E028))
 #define UART2_LCRH_R            (*((volatile unsigned long *)0x4000E02C))
 #define UART2_CTL_R             (*((volatile unsigned long *)0x4000E030))
-void uart2_init();
-char uart2_recieve();
+//void uart2_init();
+//char uart2_recieve();
 
 
 ///////////////////////////////// Bit Help /////////////////////////////////////
