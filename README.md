@@ -20,6 +20,7 @@
   - <a href="https://docs.novatel.com/OEM7/Content/Logs/GPRMC.htm" target="_blank">(NEO-6M datasheet)</a>
   - <a href="https://circuitdigest.com/article/16x2-lcd-display-module-pinout-datasheet">(LCD datasheet)</a>
  - ## Credits: ##
- | Name | ID | GitHub username |
- |:-----|:--:|----------------:|
- | Ahmad Mahfouz | 2002238 | rye141200|
+ |      Name        |    ID   | GitHub username |
+ |:----------------:|:-------:|:---------------:|
+ | Abdallah Mohamed | 2001803 |   AntiHexCode   |
+ |   Ahmad Mahfouz  | 2002238 |    rye141200    |
