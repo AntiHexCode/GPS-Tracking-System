@@ -1,28 +1,34 @@
+//#include "leds_&_switches_portf.h"
+//#include "systick_timer.c"
 #include "tm4c123gh6pm.h"
-
-
-int main (void)
-{
-  int counter = 0;
-  char GPRMC [79];
+//#include <stdint.h>
+//#include "UART.c"
+//#include "UART.h"
+void gpsdata (double *_lat_,double *_long_)
+{ 
+  int counter =0;
+  char GPRMC[79];
   char gprmc_mini[5];
   //LAT
   int lat_flag = 0;
-  char lat[24];
+  char lat[12];
   int lat_counter =0;
 
   //LAT-DIR
-  char lat_dir[2];
+  char lat_dir[1];
   int lat_dir_flag;
   int lat_dir_counter;
+
   //LON
   int lon_flag = 0;
-  char lon[24];
+  char lon[13];
   int lon_counter=0;
+
   //LON-FLAG
   int lon_dir_flag = 0;
-  char lon_dir[2];
+  char lon_dir[1];
   int lon_dir_counter = 0;
+  
   //INSERT BIG WHILE
   //LAT COUNTER INCREMENT AFTER DELAY
   //LAT DIRECTION COUNTER INCREMENT AFTER DELAY
@@ -31,8 +37,8 @@ int main (void)
     {
       counter = 0;
     }
-    if(lat_counter == 24 && lon_counter == 24 && lat_dir_counter%2==0
-    &&lon_dir_counter %2==0)
+    if(lat_counter == 12 && lon_counter == 12 && lat_dir_counter==1
+    &&lon_dir_counter==1)
     {
       lat_counter = 0;
       lon_counter = 0;
@@ -47,7 +53,7 @@ int main (void)
       gprmc_mini[0] = gpsdata;
     }
     if(counter == 1 && gpsdata == 'P')
-    {
+    { 
       counter++;
       gprmc_mini[1] = gpsdata;
     }
@@ -67,7 +73,7 @@ int main (void)
       gprmc_mini[4] = gpsdata;
     }
     if(counter == 5) // meaning we are in GPRMC LINE
-    {
+    { 
       if(gpsdata == 'V')
       break;//invalid data
 
@@ -105,9 +111,20 @@ int main (void)
         lon_dir_counter++;
         lon_dir_flag=0;
       }
+      
     //TERMINATION
     if(gpsdata == '*')
-    break;
+    { sscanf(lat,"%lf",&(*_lat_));
+      sscanf(lon,"%lf",&(*_long_));
+      if(lat_dir[0] == 'S'){
+        *_lat_ = (*_lat_) * -1;
+      }
+      if(lon_dir[0] == 'W'){
+        *_long_ = (*_long_) * -1;
+      }
+      
+      break;
+    }
     }
     }
     }
