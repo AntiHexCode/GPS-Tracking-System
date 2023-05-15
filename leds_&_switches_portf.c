@@ -1,5 +1,4 @@
 /*
- * Author: AntiHexCode
  * Code for the Leds and switches in Port F
 */
 

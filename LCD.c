@@ -1,5 +1,4 @@
 /*
-*@authour : mohamed mostafa mahmoud
 *LCD interfacing with tiva c
 */
 

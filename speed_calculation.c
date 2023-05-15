@@ -1,11 +1,10 @@
  /*
- * Author: OmarGabr0
- * Code for calculating inistance velocity every 0.5 secon
+ * Code for calculating instantaneous speed every 0.5 second
  */
 
  /*                                             *****VERY IMPORTANT*****
   -only use this funtion within the super loob
-  -this function dependes on where you use it and the delay ised in rhe main
+  -this function dependes on where you use it and the delay used in the main
   -if you changed the delay this function can't be used untill you fix it here
 
  */

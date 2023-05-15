@@ -1,5 +1,4 @@
 /*
-* Author: rye141200
 * Code for the UART0 intialization and receving data
 */
 

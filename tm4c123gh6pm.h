@@ -1,6 +1,5 @@
 /////////////////////////////////// General ////////////////////////////////////
 /*
-* Author: AntiHexCode
 * General Macros
 */
 
@@ -11,14 +10,13 @@
 
 // Constants
 #define UNLOCK_KEY                         0x4C4F434B
-#define CLOCK                               16000000
+#define CLOCK                               80000000
 ////////////////////////////////////////////////////////////////////////////////
 
 
 
 /////////////////////////// Distance Calculations //////////////////////////////
 /*
-* Author: AntiHexCode
 * Libraries, Macros and Prototypes for Calculating the distance between two coordinates
 */
 
@@ -37,12 +35,12 @@ double distance_between_coordinates(double lat_1, double lon_1, double lat_2, do
 
 ////////////////////////// Latitude and Longitude //////////////////////////////
 /*
-* Author: AntiHexCode
 * Libraries and Prototypes for Extracting the latitude and longitude from NMEA
 */
 
 // Libraries
 #include <stdio.h>
+#include <stdlib.h>
 
 // Prototypes
 void latitude_and_longitude (double *latitude, double *longitude);
@@ -52,7 +50,6 @@ void latitude_and_longitude (double *latitude, double *longitude);
 
 ////////////////////////////// LEDs and Switches ///////////////////////////////
 /*
- * Author: AntiHexCode
  * Macros and Prototypes for Port F
 */
 
@@ -84,8 +81,11 @@ void turn_leds_off (void);
 int switch_1_pressed (void);
 int switch_2_pressed (void);
 ////////////////////////////////////////////////////////////////////////////////
+
+
+
+/////////////////////////////////// UART 2 /////////////////////////////////////
 /*
- * Author: OmarGabr0
  * Macros for Port D ****"used in UART 2"***
 */
 // Macros for portD
@@ -96,9 +96,6 @@ int switch_2_pressed (void);
 #define GPIO_PORTD_DEN_R        (*((volatile unsigned long *)0x4000751C))
 #define GPIO_PORTD_LOCK_R       (*((volatile unsigned long *)0x40007520))
 #define GPIO_PORTD_PCTL_R       (*((volatile unsigned long *)0x4000752C))
-#define GPIO_PORTD_DIR_R        (*((volatile unsigned long *)0x40007400))
-#define GPIO_PORTD_PUR_R        (*((volatile unsigned long *)0x40007510))
-#define GPIO_PORTD_PDR_R        (*((volatile unsigned long *)0x40007514))
 
 #define UART2_DR_R              (*((volatile unsigned long *)0x4000E000))
 #define UART2_FR_R              (*((volatile unsigned long *)0x4000E018))
@@ -106,13 +103,18 @@ int switch_2_pressed (void);
 #define UART2_FBRD_R            (*((volatile unsigned long *)0x4000E028))
 #define UART2_LCRH_R            (*((volatile unsigned long *)0x4000E02C))
 #define UART2_CTL_R             (*((volatile unsigned long *)0x4000E030))
+
+#define SYSCTL_RCGCUART_R       (*((volatile unsigned long *)0x400FE618))
+
+// Prototypes
+void uart_init(void);
+char uart_recieve(void);
 ////////////////////////////////////////////////////////////////////////////////
 
 
 
 /////////////////////////// PF4 Switch Interrupt ///////////////////////////////
 /*
- * Author: AntiHexCode
  * Macros and Prototypes for PF4 Switch Interrupt
 */
 
@@ -139,7 +141,6 @@ void GPIOPortF_Handler(void);
 
 ////////////////////////////// Speed Calculations //////////////////////////////
 /*
-* Author: OmarGabr0
 * Prototypes for calculating inistance velocity every 0.5 secon
 */
 
@@ -151,7 +152,6 @@ double average_speed (double counter, double comulative_speed);
 
 /////////////////////////////// SysTick Timer //////////////////////////////////
 /*
- * Author: AntiHexCode
  * Macros and Prototypes for SysTick timer
 */
 
@@ -164,46 +164,14 @@ double average_speed (double counter, double comulative_speed);
 
 // Prototypes
 // SysTick timer
-void init_systick (void);
-void delay (double time);
-////////////////////////////////////////////////////////////////////////////////
-
-
-
-/////////////////////////////////// UART0 //////////////////////////////////////
-/*
-* Author: OmarGabr0
-* UART0 Macros and Prototypes
-*/
-
-// Macros
-// UART0 //
-#define UART0_DR_R              (*((volatile unsigned long *)0x4000C000))
-#define UART0_FR_R              (*((volatile unsigned long *)0x4000C018))
-#define UART0_IBRD_R            (*((volatile unsigned long *)0x4000C024))
-#define UART0_FBRD_R            (*((volatile unsigned long *)0x4000C028))
-#define UART0_LCRH_R            (*((volatile unsigned long *)0x4000C02C))
-#define UART0_CTL_R             (*((volatile unsigned long *)0x4000C030))
-
-// SYSCTL //
-#define SYSCTL_RCGCUART_R       (*((volatile unsigned long *)0x400FE618))
-
-// GPIO A //
-#define GPIO_PORTA_AFSEL_R      (*((volatile unsigned long *)0x40004420))
-#define GPIO_PORTA_PCTL_R       (*((volatile unsigned long *)0x4000452C))
-#define GPIO_PORTA_AMSEL_R      (*((volatile unsigned long *)0x40004528))
-#define GPIO_PORTA_DEN_R        (*((volatile unsigned long *)0x4000451C))
-
-// Prototypes
-void uart_init();
-char uart_recieve();
+void systick_init (void);
+void delay (float time);
 ////////////////////////////////////////////////////////////////////////////////
 
 
 
 ///////////////////////////////// Bit Help /////////////////////////////////////
 /*
-* Author: Mohamed Mostafa Mahmoud
 * Macros to help with some Bit operations
 */
 
@@ -230,7 +198,6 @@ char uart_recieve();
 
 //////////////////////////////////// LCD ///////////////////////////////////////
 /*
- * Author: AntiHexCode, Mohamed Mostafa Mahmoud
  * Macros and Prototypes for LCD
 */
 
@@ -266,27 +233,3 @@ void lcd_init(void);
 void lcd_data(unsigned char data);
 void lcd_string(unsigned char *str, unsigned char length);
 ////////////////////////////////////////////////////////////////////////////////
-//*****************************************************************************
-//
-// UART registers (UART2)
-// author: rye141200
-//*****************************************************************************
-#define UART2_DR_R              (*((volatile unsigned long *)0x4000E000))
-#define UART2_RSR_R             (*((volatile unsigned long *)0x4000E004))
-#define UART2_ECR_R             (*((volatile unsigned long *)0x4000E004))
-#define UART2_FR_R              (*((volatile unsigned long *)0x4000E018))
-#define UART2_ILPR_R            (*((volatile unsigned long *)0x4000E020))
-#define UART2_IBRD_R            (*((volatile unsigned long *)0x4000E024))
-#define UART2_FBRD_R            (*((volatile unsigned long *)0x4000E028))
-#define UART2_LCRH_R            (*((volatile unsigned long *)0x4000E02C))
-#define UART2_CTL_R             (*((volatile unsigned long *)0x4000E030))
-#define UART2_IFLS_R            (*((volatile unsigned long *)0x4000E034))
-#define UART2_IM_R              (*((volatile unsigned long *)0x4000E038))
-#define UART2_RIS_R             (*((volatile unsigned long *)0x4000E03C))
-#define UART2_MIS_R             (*((volatile unsigned long *)0x4000E040))
-#define UART2_ICR_R             (*((volatile unsigned long *)0x4000E044))
-#define UART2_DMACTL_R          (*((volatile unsigned long *)0x4000E048))
-#define UART2_9BITADDR_R        (*((volatile unsigned long *)0x4000E0A4))
-#define UART2_9BITAMASK_R       (*((volatile unsigned long *)0x4000E0A8))
-#define UART2_PP_R              (*((volatile unsigned long *)0x4000EFC0))
-#define UART2_CC_R              (*((volatile unsigned long *)0x4000EFC8))

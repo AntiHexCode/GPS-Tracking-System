@@ -1,5 +1,4 @@
 /*
- * Author: AntiHexCode
  * Code for PF4 Switch Interrupt
 */
 

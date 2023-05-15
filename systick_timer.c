@@ -1,5 +1,4 @@
 /*
- * Author: AntiHexCode
  * Code for SysTick timer
 */
 
@@ -7,7 +6,7 @@
 
 
 // Intialize SysTick timer to count 1 millisecond
-void init_systick (void)
+void systick_init (void)
 {
   NVIC_ST_CTRL_R = 0;
   NVIC_ST_RELOAD_R = (CLOCK / 1000) - 1;
@@ -16,7 +15,7 @@ void init_systick (void)
 }
 
 // Delay for specified time in milliseconds
-void delay (double time)
+void delay (float time)
 {
   int i;
   for (i = 0; i < time; i++)

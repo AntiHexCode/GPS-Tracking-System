@@ -1,5 +1,4 @@
 /*
-* Author: OmarGabr0
 * Code for the UART2 intialization and receving data in case port A is not working
 */
 //////////////////////////////////////////////////
@@ -8,16 +7,16 @@
 
 //  UART PORT D INIT
 #include "tm4c123gh6pm.h"
-void UART2_Init(void){ 
-    SYSCTL_RCGCUART_R |=0x04; 
-    SYSCTL_RCGCGPIO_R |=0x08; 
+void UART2_Init(void){
+    SYSCTL_RCGCUART_R |=0x04;
+    SYSCTL_RCGCGPIO_R |=0x08;
 while(!(SYSCTL_PRGPIO_R &= 0X08)); // wait till port D stable
-   UART2_CTL_R &= ~0x0001; 
-   UART2_IBRD_R  = 104; 
-   UART2_FBRD_R = 11; 
-   UART2_LCRH_R = 0x0070; 
-   UART2_CTL_R |= 0x0301; 
-   // PORT D UART2 Initializations // 
+   UART2_CTL_R &= ~0x0001;
+   UART2_IBRD_R  = 104;
+   UART2_FBRD_R = 11;
+   UART2_LCRH_R = 0x0070;
+   UART2_CTL_R |= 0x0301;
+   // PORT D UART2 Initializations //
    GPIO_PORTD_AMSEL_R &= ~0xC0; // disable digital function on PD& andPD6
    GPIO_PORTD_LOCK_R = 0x4C4F434B; //unlock port D
    GPIO_PORTD_CR_R |= 0xC0; // allow changes to PD7 and PD6
@@ -30,7 +29,6 @@ while(!(SYSCTL_PRGPIO_R &= 0X08)); // wait till port D stable
 
 // UART2 recieve from Rx fifo
 char uart2_recieve(){
-    while (UART2_FR_R & 0X008 !=0); // while fifo embty 
+    while (UART2_FR_R & 0X008 !=0); // while fifo embty
     return(char)(UART2_DR_R & 0xFF);
 }
-

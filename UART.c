@@ -1,5 +1,4 @@
 /*
-* Author: OmarGabr0
 * Code for the UART2 intialization and receving data in case port A is not working
 */
 //////////////////////////////////////////////////
@@ -10,28 +9,25 @@
 
 //  UART PORT D INIT
 void uart_init(void){
- 
-    SYSCTL_RCGCUART_R |=0x0004; 
-    SYSCTL_RCGCGPIO_R |=0x0008; 
+  SYSCTL_RCGCUART_R |= 0x04;
+  SYSCTL_RCGCGPIO_R |= 0x08;
 
-   UART2_CTL_R &= ~0x0001; 
-   UART2_IBRD_R = 104; 
-   UART2_FBRD_R = 11; 
-   UART2_LCRH_R = 0x0070; 
-   UART2_CTL_R |= 0x0301; 
+  UART2_CTL_R &= ~0x01;
+  UART2_IBRD_R = 520; // also try 104, and check the CLOCK in the header file
+  UART2_FBRD_R = 53; // also try 11, and check the CLOCK in the header file
+  UART2_LCRH_R = 0x0060; // 8 bit, fifo disabled
+  UART2_CTL_R |= 0x0301;
 
-    GPIO_PORTD_LOCK_R = 0x4C4F434B;
-    GPIO_PORTD_CR_R |= 0xC0;
-    GPIO_PORTD_AMSEL_R &= ~0xC0;
-    GPIO_PORTD_PCTL_R &= ~0x0FF000000;
-    GPIO_PORTD_DIR_R |= 0x80; 
-    GPIO_PORTD_DIR_R &= ~0x40;
-    GPIO_PORTD_AFSEL_R |= 0xC0;
-    GPIO_PORTD_DEN_R |= 0xC0;
+  GPIO_PORTD_LOCK_R = UNLOCK_KEY;
+  GPIO_PORTD_CR_R |= 0xFF;
+  GPIO_PORTD_AFSEL_R |= 0xC0;
+  GPIO_PORTD_PCTL_R = (GPIO_PORTD_PCTL_R & ~0xFF000000) | 0x11000000;
+  GPIO_PORTD_AMSEL_R &= ~0xC0;
+  GPIO_PORTD_DEN_R |= 0xC0;
 }
 
 // UART2 recieve from Rx fifo
-char uart_recieve(){
-    while ((UART2_FR_R & 0X010) !=0); // while fifo embty
+char uart_recieve(void){
+    while ((UART2_FR_R & 0X10) != 0); // while fifo empty, wait
     return (char)(UART2_DR_R & 0xFF);
 }

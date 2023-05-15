@@ -1,5 +1,4 @@
 /*
-* Author: AntiHexCode
 * Code for Calculating the distance between two coordinates
 */
 
